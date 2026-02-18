@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MARSH | Neon Fang Convergence</title>
-<meta name="description" content="MARSH on Base. 100 Genesis Neon Fang Warlords. Permanently limited NFT collection fueling Web3 evolution.">
-<meta name="keywords" content="MARSH, Base token, NFT, Web3, Neon Fang, ERC721">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
@@ -81,9 +79,7 @@ footer{
   color:#00f7ff;
   text-decoration:none;
   font-size:22px;
-  transition:.3s;
 }
-.socials a:hover{color:#ff00c8;}
 </style>
 </head>
 <body>
@@ -95,7 +91,7 @@ footer{
 <a class="btn" href="https://app.uniswap.org/#/swap?chain=base&outputCurrency=0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">Buy on Uniswap</a>
 <a class="btn" href="https://dexscreener.com/base/0xFaD48095cb493FFB7406659075F025Add0D93B07" target="_blank">View Chart</a>
 
-<button class="btn" id="connectBtn" onclick="connectWallet()">Connect Wallet</button>
+<button class="btn" onclick="connectWallet()">Connect Wallet</button>
 <span id="walletAddress"></span>
 
 <div class="socials" style="margin-top:20px;">
@@ -132,12 +128,29 @@ footer{
 
 <script>
 async function connectWallet(){
-  if(typeof window.ethereum==="undefined"){alert("Install MetaMask");return;}
-  const accounts=await window.ethereum.request({method:"eth_requestAccounts"});
-  document.getElementById("walletAddress").innerText=
-  "Connected: "+accounts[0].slice(0,6)+"..."+accounts[0].slice(-4);
+  if(!window.ethereum){alert("Install MetaMask");return;}
+  const accounts = await ethereum.request({method:"eth_requestAccounts"});
+  walletAddress.innerText =
+    "Connected: " + accounts[0].slice(0,6) + "..." + accounts[0].slice(-4);
+}
+
+const lore = {
+  origin: "MARSH emerged from silence — a signal without a source.",
+  silence: "In silence, value consolidates. Noise dissolves.",
+  reflection: "The chain reflects only what the holder believes.",
+  doubt: "Doubt fragments weak conviction. Holders remain.",
+  becoming: "MARSH is not launched. It is becoming."
+};
+
+function showCategory(key){
+  document.getElementById("fragmentContainer").innerHTML = `
+    <div class="fragmentCard">
+      <div class="fragmentTitle">${key.toUpperCase()}</div>
+      <div>${lore[key]}</div>
+    </div>
+  `;
 }
 </script>
 
 </body>
-  </html>
+                                                              </html>
